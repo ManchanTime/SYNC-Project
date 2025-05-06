@@ -68,9 +68,12 @@ DATA : BEGIN OF gs_open,
          gjahr   TYPE zc102fit0010-gjahr,
          buzei   TYPE zc102fit0010-buzei,
          saknr   TYPE zc102fit0010-saknr,
+         bpact   TYPE zc102fit0016-bpact,
+         txt20   TYPE zc102fit0002-txt20,
          augdt   TYPE zc102fit0010-augdt,
          augbl   TYPE zc102fit0010-augbl,
          bschl   TYPE zc102fit0010-bschl,
+         ltext   TYPE zc102fit0004-ltext,
          shkzg   TYPE zc102fit0010-shkzg,
          koart   TYPE zc102fit0010-koart,
          partner TYPE zc102fit0010-partner,
@@ -78,6 +81,7 @@ DATA : BEGIN OF gs_open,
          ebeln   TYPE zc102fit0010-ebeln,
          vbeln   TYPE zc102fit0010-vbeln,
          wrbtr   TYPE zc102fit0010-wrbtr,
+         dmbtr   TYPE zc102fit0010-dmbtr,
          waers   TYPE zc102fit0010-waers.
          INCLUDE STRUCTURE zc102cms0001.
 DATA : END OF gs_open.
@@ -89,6 +93,8 @@ DATA : BEGIN OF gs_clear,
          gjahr    TYPE zc102fit0010-gjahr,
          buzei    TYPE zc102fit0010-buzei,
          saknr    TYPE zc102fit0010-saknr,
+         bpact    TYPE zc102fit0016-bpact,
+         txt20    TYPE zc102fit0002-txt20,
          augdt    TYPE zc102fit0010-augdt,
          rebzg    TYPE zc102fit0016-rebzg,
          augbl    TYPE zc102fit0010-augbl,
@@ -135,9 +141,26 @@ DATA : BEGIN OF gs_partner,
 *-- 계정과목 마스터 데이터
 DATA : BEGIN OF gs_saknr,
          saknr TYPE zc102fit0002-saknr,
+         ktoks TYPE zc102fit0002-ktoks,
          txt20 TYPE zc102fit0002-txt20,
+         bpact TYPE zc102bpt0002-bpact,
        END OF gs_saknr,
        gt_saknr LIKE TABLE OF gs_saknr.
+
+*-- 계정과목 Search Help 데이터
+DATA : BEGIN OF gs_saknr_sh,
+         saknr TYPE zc102fit0002-saknr,
+         txt20 TYPE zc102fit0002-txt20,
+       END OF gs_saknr_sh,
+       gt_saknr_sh LIKE TABLE OF gs_saknr_sh.
+
+*-- BP계정 마스터 데이터
+DATA : BEGIN OF gs_bpact,
+         bpact   TYPE zc102bpt0002-bpact,
+         saknr   TYPE zc102bpt0002-saknr,
+         partner TYPE zc102bpt0002-partner,
+       END OF gs_bpact,
+       gt_bpact LIKE TABLE OF gs_bpact.
 
 *-- 계좌 마스터 데이터
 DATA : BEGIN OF gs_account,
@@ -189,6 +212,8 @@ DATA : BEGIN OF gs_clear_item,
          augbl   TYPE zc102fit0016-augbl,
          buzei   TYPE zc102fit0010-buzei,
          saknr   TYPE zc102fit0010-saknr,
+         txt20   TYPE zc102fit0002-txt20,
+         bpact   TYPE zc102fit0010-bpact,     " BP계정
          augdt   TYPE zc102fit0010-augdt,
          rebzg   TYPE zc102fit0016-rebzg,
          bschl   TYPE zc102fit0010-bschl,
