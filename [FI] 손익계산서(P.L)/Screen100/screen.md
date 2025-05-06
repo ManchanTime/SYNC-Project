@@ -1,0 +1,9 @@
+``` abap
+PROCESS BEFORE OUTPUT.
+  MODULE status_0100.
+  MODULE init_process_control_0100.
+  MODULE chart_ctrl.
+*
+PROCESS AFTER INPUT.
+* MODULE USER_COMMAND_0100.
+  MODULE exit_0100 AT EXIT-COMMAND.
