@@ -1,0 +1,85 @@
+*&---------------------------------------------------------------------*
+*& Report ZC102FIR0012
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+
+INCLUDE zc102fir0012top                         .    " Global Data
+
+INCLUDE zc102fir0012s01                         .  " Selection screen
+INCLUDE zc102fir0012c01                         .  " Event
+INCLUDE zc102fir0012o01                         .  " PBO-Modules
+INCLUDE zc102fir0012i01                         .  " PAI-Modules
+INCLUDE zc102fir0012f01                         .  " FORM-Routines
+
+**********************************************************************
+* INITIALIZATION
+**********************************************************************
+INITIALIZATION.
+  PERFORM set_init_value.
+
+**********************************************************************
+* AT-SELECTION SCREEN OUTPUT
+**********************************************************************
+AT SELECTION-SCREEN OUTPUT.
+  PERFORM set_init_screen.
+
+**********************************************************************
+* START-OF-SELECTION
+**********************************************************************
+START-OF-SELECTION.
+  gv_text = '## ##'.
+  gv_datum = sy-datum.
+
+*-- ## # ### ##
+  PERFORM get_base_data.
+*-- BP ### ##
+  PERFORM get_partner_data.
+*-- ## ### ##(###, # #)
+  PERFORM set_screen_data.
+
+  CASE pa_btype.
+    WHEN 'C'.
+      CALL SCREEN 100.
+    WHEN 'V'.
+      CALL SCREEN 200.
+  ENDCASE.
+
+*GUI Texts
+*----------------------------------------------------------
+* TITLE100 --> #### ### ## ## ##
+* TITLE200 --> ## #### ##
+
+*Text elements
+*----------------------------------------------------------
+* T01 BP ##
+* T02 ## ## ##
+* T03 ##
+* T04 ##
+* T05 ### ##
+
+
+*Selection texts
+*----------------------------------------------------------
+* PA_ALL         ## ##
+* PA_BPART         #### ###
+* PA_BTYPE         BP ##
+* PA_BUKRS         ## ##
+* PA_CLEAR         ####
+* PA_LAYO         ####
+* PA_MAXR         ## ## #
+* PA_OPEN         ####
+* SO_BUDAT         ###
+* SO_CDATE D       .
+* SO_IDAT2         ## ## ##
+* SO_IDATE         ## ## ##
+
+
+*Messages
+*----------------------------------------------------------
+*
+* Message class: ZC102MSG
+*004   #### #### ####
+
+----------------------------------------------------------------------------------
+Extracted by Direct Download Enterprise version 1.3.1 - E.G.Mellodew. 1998-2005 UK. Sap Release 758
